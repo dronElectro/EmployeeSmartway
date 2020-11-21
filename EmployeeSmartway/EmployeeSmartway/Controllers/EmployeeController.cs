@@ -9,7 +9,7 @@ using EmployeeSmartway.Models;
 
 namespace EmployeeSmartway.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/employee")]
     [ApiController]
     public class EmployeeController : Controller //Base
     {
@@ -28,7 +28,7 @@ namespace EmployeeSmartway.Controllers
         }
 
         // GET: api/Employees/5
-        [HttpGet("{id}")]
+        /*[HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
             var employee = await _context.Employees.FindAsync(id);
@@ -39,7 +39,62 @@ namespace EmployeeSmartway.Controllers
             }
 
             return employee;
+        }*/
+
+        
+
+
+
+
+
+
+
+        //**************************************
+
+
+        // POST: api/Employees
+        [HttpPost]
+        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
+        {
+            _context.Employees.AddRange(employee);
+            await _context.SaveChangesAsync();
+
+            //return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }/*, employee*/);
+            return CreatedAtAction(nameof(GetEmployee), employee.Id);
         }
+
+
+        // DELETE: api/Employee/{id}
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEmployee(int id)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            _context.Employees.Remove(employee);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+
+        // GET: api/Employees
+        [HttpGet("{companyid}")]
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeOnCOmpanyId(int companyId)
+        {
+            var temp = new List<Employee>();
+            await foreach (Employee i in _context.Employees)
+                if(i.CompanyId == companyId)
+                {
+                    temp.Add(i);
+                }
+
+            return temp;
+        }
+
 
         // PUT: api/Employees/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -50,8 +105,7 @@ namespace EmployeeSmartway.Controllers
             {
                 return BadRequest();
             }
-
-            _context.Entry(employee).State = EntityState.Modified;
+                _context.Entry(employee).State = EntityState.Modified;
 
             try
             {
@@ -71,32 +125,38 @@ namespace EmployeeSmartway.Controllers
 
             return NoContent();
         }
-        //**************************************
-        // POST: api/Employees
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
-        {
-            _context.Employees.AddRange(employee);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }/*, employee*/);
-        }
-
-        // DELETE: api/Employees/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmployee(int id)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<Employee>> PatchEmployee(int id, Employee employee)
         {
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee == null)
+            if (id != employee.Id)
             {
-                return NotFound();
+                return BadRequest();
+            }
+            Employee employeeInBase = await _context.Employees.SingleAsync(x => x.Id == id);
+
+            employeeInBase.Name = ((employee.Name != employeeInBase.Name) && (employee.Name != null)) ? employee.Name : employeeInBase.Name;
+            employeeInBase.Surname = ((employee.Surname != employeeInBase.Surname) && (employee.Surname != null)) ? employee.Surname : employeeInBase.Surname;
+            employeeInBase.Phone = ((employee.Phone != employeeInBase.Phone) && (employee.Phone != null)) ? employee.Phone : employeeInBase.Phone;
+            employeeInBase.CompanyId = ((employee.CompanyId != employeeInBase.CompanyId) && (employee.CompanyId != 0)) ? employee.CompanyId : employeeInBase.CompanyId;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!EmployeeExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            _context.Employees.Remove(employee);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return employeeInBase;
         }
 
         private bool EmployeeExists(int id)
