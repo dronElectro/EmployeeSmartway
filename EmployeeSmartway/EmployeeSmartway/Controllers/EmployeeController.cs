@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EmployeeSmartway.Models;
 using static EmployeeSmartway.Models.Employee;
-//v2
+//final
 namespace EmployeeSmartway.Controllers
 {
     [Route("api/employee")]
