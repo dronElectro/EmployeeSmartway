@@ -310,3 +310,5 @@ C:\Users\Andrey\Documents\GitHub\EmployeeSmartway\EmployeeSmartway\EmployeeSmart
 C:\Users\Andrey\Documents\GitHub\EmployeeSmartway\EmployeeSmartway\EmployeeSmartway\obj\Debug\net5.0\ref\EmployeeSmartway.dll
 C:\Users\Andrey\Documents\GitHub\EmployeeSmartway\EmployeeSmartway\EmployeeSmartway\obj\Debug\net5.0\EmployeeSmartway.pdb
 C:\Users\Andrey\Documents\GitHub\EmployeeSmartway\EmployeeSmartway\EmployeeSmartway\obj\Debug\net5.0\EmployeeSmartway.genruntimeconfig.cache
+C:\Users\Andrey\Documents\GitHub\EmployeeSmartway\EmployeeSmartway\EmployeeSmartway\bin\Debug\net5.0\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Users\Andrey\Documents\GitHub\EmployeeSmartway\EmployeeSmartway\EmployeeSmartway\bin\Debug\net5.0\Nancy.dll

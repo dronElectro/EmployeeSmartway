@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Nancy.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EmployeeSmartway.Models
@@ -13,8 +15,8 @@ namespace EmployeeSmartway.Models
         public string Surname { get; set; }
         public string Phone { get; set; }
         public int CompanyId { get; set; }
-        public string Type { get; set; }
-        public string Number { get; set; }
+        [JsonIgnore] public string Type { get; private set; }
+        [JsonIgnore] public string Number { get; private set; }
         public struct PassportEmp
         {
             public string Type { get; set; }
