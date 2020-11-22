@@ -13,8 +13,8 @@ namespace EmployeeSmartway.Models
         public EmployeeContext(DbContextOptions<EmployeeContext> options)
             : base(options)
         {
+            
             Database.EnsureCreated();
         }
-        //public DbSet<EmployeeSmartway.Models.Employee> Employee { get; set; }
     }
 }

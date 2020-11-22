@@ -31,7 +31,6 @@ namespace EmployeeSmartway
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(connection));
             services.AddControllers();
-            //services.AddControllersWithViews();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
@@ -52,11 +51,7 @@ namespace EmployeeSmartway
             });
             app.Run(async (context) =>
             {
-                // пишем на консоль информацию
                 logger.LogInformation("Processing request {0}", context.Request.Path);
-                //или так
-                //logger.LogInformation($"Processing request {context.Request.Path}");
-
                 await context.Response.WriteAsync("Hello World!");
             });
         }

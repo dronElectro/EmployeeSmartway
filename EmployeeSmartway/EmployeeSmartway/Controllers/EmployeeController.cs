@@ -47,8 +47,6 @@ namespace EmployeeSmartway.Controllers
         {
             _context.Employees.AddRange(employee);
             await _context.SaveChangesAsync();
-
-            //return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }/*, employee*/);
             return CreatedAtAction(nameof(GetEmployee), employee.Id);
         }
 
@@ -73,7 +71,8 @@ namespace EmployeeSmartway.Controllers
 
         // GET: api/Employees
         [HttpGet("{companyid}")]
-        //[HttpGet("companyid{companyid}")] - если есть необходимость обычный get по id сотрудника и нужно различать с get по company id
+        //[HttpGet("companyid{companyid}")] - если есть необходимость использовать обычный get по id сотрудника
+        //и нужно различать с get по company id
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeOnCOmpanyId(int companyId)
         {
             var temp = new List<Employee>();
@@ -81,14 +80,13 @@ namespace EmployeeSmartway.Controllers
                 if(i.CompanyId == companyId)
                 {
                     temp.Add(i);
+                    //temp.AddRange(_context.Employees.Where(_context.Employees.fi=>_context.Employees.))
                 }
-
             return temp;
         }
 
 
         // PUT: api/Employees/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEmployee(int id, Employee employee)
         {
@@ -126,7 +124,7 @@ namespace EmployeeSmartway.Controllers
             }
             Employee employeeInBase = await _context.Employees.SingleAsync(x => x.Id == id);
 
-            //Проверка на обнуление какого либо поля (в запрос значение поля, которое необходимо обнулить, необходимо отправить -1)
+            //Проверка на обнуление какого либо поля (в запрос значение поля, которое необходимо обнулить, необходимо отправить '-1')
             if (employee.Name == "-1") employeeInBase.Name = null;
             else if (employee.Name != employeeInBase.Name && employee.Name != null) employeeInBase.Name = employee.Name;
             if (employee.Surname == "-1") employeeInBase.Surname = null;
@@ -135,6 +133,10 @@ namespace EmployeeSmartway.Controllers
             else if (employee.Phone != employeeInBase.Phone && employee.Phone != null) employeeInBase.Phone = employee.Phone;
             if (employee.CompanyId == -1) employeeInBase.CompanyId = 0; 
             else if (employee.CompanyId != employeeInBase.CompanyId && employee.CompanyId != 0) employeeInBase.CompanyId = employee.CompanyId;
+            if (employee.Number == "-1") employeeInBase.Number = null;
+            else if (employee.Number != employeeInBase.Number && employee.Number != null) employeeInBase.Number = employee.Number;
+            if (employee.Type == "-1") employeeInBase.Type = null;
+            else if (employee.Type != employeeInBase.Type && employee.Type != null) employeeInBase.Type = employee.Type;
 
             try
             {

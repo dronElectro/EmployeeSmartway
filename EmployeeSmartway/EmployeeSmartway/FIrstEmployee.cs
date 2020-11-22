@@ -19,13 +19,8 @@ namespace EmployeeSmartway
                         Name = "Andrey",
                         Surname = "Brevnov",
                         Phone = "+79374449205",
-                        CompanyId = 1,
-                        
-                        //Passport{ "555","555555"}
-                        //passport { "5555","555555"}
-                        //(Type="555", number="555555")=> 
-                        //Passport(Type, number)
-
+                        Type = "5555",
+                        Number = "876876"
                     }
                     );
                 context.SaveChanges();

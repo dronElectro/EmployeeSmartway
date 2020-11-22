@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,15 +15,17 @@ namespace EmployeeSmartway.Models
         public int CompanyId { get; set; }
         public string Type { get; set; }
         public string Number { get; set; }
-        public struct Passport
+        public struct PassportEmp
         {
             public string Type;
             public string Number;
         }
-        public Passport PassportEmp
+
+        [NotMapped]
+        public PassportEmp Passport
         {
             get {
-                Passport pass = new Passport();
+                PassportEmp pass = new PassportEmp();
                 pass.Number = this.Number;
                 pass.Type = this.Type;
 
