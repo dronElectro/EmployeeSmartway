@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/7xt3c83oG8K7o3Pxie+dmb888edWEWIKpzQzmYkXFvqAETPN7QR7Av9ap5NcPPCPzkWU3glYT8jDXhYvEiSPw==",
+  "dgSpecHash": "qIDUFkGY/ngY7ZnjnFLCnk0LkF/RHPtawv4AjCePrMwAwLqzkHzT5nCojoaII0ZW5Pe91uYZ6IR55jdrhRuB7w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Andrey\\source\\repos\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway.csproj",
+  "projectFilePath": "C:\\Users\\Andrey\\Documents\\GitHub\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Andrey\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.0\\microsoft.aspnetcore.authentication.jwtbearer.5.0.0.nupkg.sha512",

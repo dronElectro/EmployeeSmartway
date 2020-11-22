@@ -7681,11 +7681,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrey\\source\\repos\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway.csproj",
+      "projectUniqueName": "C:\\Users\\Andrey\\Documents\\GitHub\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway.csproj",
       "projectName": "EmployeeSmartway",
-      "projectPath": "C:\\Users\\Andrey\\source\\repos\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway.csproj",
+      "projectPath": "C:\\Users\\Andrey\\Documents\\GitHub\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway.csproj",
       "packagesPath": "C:\\Users\\Andrey\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrey\\source\\repos\\EmployeeSmartway\\EmployeeSmartway\\obj\\",
+      "outputPath": "C:\\Users\\Andrey\\Documents\\GitHub\\EmployeeSmartway\\EmployeeSmartway\\EmployeeSmartway\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Andrey\\AppData\\Roaming\\NuGet\\NuGet.Config",

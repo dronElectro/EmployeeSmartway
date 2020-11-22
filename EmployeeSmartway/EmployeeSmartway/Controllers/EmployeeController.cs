@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EmployeeSmartway.Models;
-
+using static EmployeeSmartway.Models.Employee;
+//v2
 namespace EmployeeSmartway.Controllers
 {
     [Route("api/employee")]
@@ -123,6 +124,7 @@ namespace EmployeeSmartway.Controllers
                 return BadRequest();
             }
             Employee employeeInBase = await _context.Employees.SingleAsync(x => x.Id == id);
+            PassportEmp temp = new PassportEmp();
 
             //Проверка на обнуление какого либо поля (в запрос значение поля, которое необходимо обнулить, необходимо отправить '-1')
             if (employee.Name == "-1") employeeInBase.Name = null;
@@ -133,10 +135,12 @@ namespace EmployeeSmartway.Controllers
             else if (employee.Phone != employeeInBase.Phone && employee.Phone != null) employeeInBase.Phone = employee.Phone;
             if (employee.CompanyId == -1) employeeInBase.CompanyId = 0; 
             else if (employee.CompanyId != employeeInBase.CompanyId && employee.CompanyId != 0) employeeInBase.CompanyId = employee.CompanyId;
-            if (employee.Number == "-1") employeeInBase.Number = null;
-            else if (employee.Number != employeeInBase.Number && employee.Number != null) employeeInBase.Number = employee.Number;
-            if (employee.Type == "-1") employeeInBase.Type = null;
-            else if (employee.Type != employeeInBase.Type && employee.Type != null) employeeInBase.Type = employee.Type;
+            if (employee.Passport.Number == "-1") { temp = employeeInBase.Passport; temp.Number = null; employeeInBase.Passport = temp; }
+            else if (employee.Passport.Number != employeeInBase.Passport.Number && employee.Passport.Number != null)
+            {temp = employeeInBase.Passport; temp.Number = employee.Passport.Number; employeeInBase.Passport = temp;}
+            if (employee.Passport.Type == "-1") { temp = employeeInBase.Passport; temp.Type = null; employeeInBase.Passport = temp; }
+            else if (employee.Passport.Type != employeeInBase.Passport.Type && employee.Passport.Type != null)
+            { temp = employeeInBase.Passport; temp.Type = employee.Passport.Type; employeeInBase.Passport = temp; }
 
             try
             {

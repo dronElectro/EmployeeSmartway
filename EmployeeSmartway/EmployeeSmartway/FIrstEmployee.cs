@@ -19,8 +19,7 @@ namespace EmployeeSmartway
                         Name = "Andrey",
                         Surname = "Brevnov",
                         Phone = "+79374449205",
-                        Type = "5555",
-                        Number = "876876"
+                        Passport = new PassportEmp { Number = "3434", Type = "43434"}
                     }
                     );
                 context.SaveChanges();
