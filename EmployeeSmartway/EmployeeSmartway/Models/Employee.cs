@@ -12,15 +12,26 @@ namespace EmployeeSmartway.Models
         public string Surname { get; set; }
         public string Phone { get; set; }
         public int CompanyId { get; set; }
-        /*public struct Passport
+        public string Type { get; set; }
+        public string Number { get; set; }
+        public struct Passport
         {
-            public string Type { get; set; }
-            public string Number { get; set; }
-            public Passport(string Type, string Number)
-            {
-                this.Type = Type;
-                this.Number = Number;
+            public string Type;
+            public string Number;
+        }
+        public Passport PassportEmp
+        {
+            get {
+                Passport pass = new Passport();
+                pass.Number = this.Number;
+                pass.Type = this.Type;
+
+                return pass;
             }
-        }*/
+            set {
+                this.Number = value.Number;
+                this.Type = value.Type;
+            }
+        }
     }
 }

@@ -41,17 +41,6 @@ namespace EmployeeSmartway.Controllers
             return employee;
         }*/
 
-        
-
-
-
-
-
-
-
-        //**************************************
-
-
         // POST: api/Employees
         [HttpPost]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
@@ -81,8 +70,10 @@ namespace EmployeeSmartway.Controllers
         }
 
 
+
         // GET: api/Employees
         [HttpGet("{companyid}")]
+        //[HttpGet("companyid{companyid}")] - если есть необходимость обычный get по id сотрудника и нужно различать с get по company id
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployeeOnCOmpanyId(int companyId)
         {
             var temp = new List<Employee>();
@@ -135,10 +126,15 @@ namespace EmployeeSmartway.Controllers
             }
             Employee employeeInBase = await _context.Employees.SingleAsync(x => x.Id == id);
 
-            employeeInBase.Name = ((employee.Name != employeeInBase.Name) && (employee.Name != null)) ? employee.Name : employeeInBase.Name;
-            employeeInBase.Surname = ((employee.Surname != employeeInBase.Surname) && (employee.Surname != null)) ? employee.Surname : employeeInBase.Surname;
-            employeeInBase.Phone = ((employee.Phone != employeeInBase.Phone) && (employee.Phone != null)) ? employee.Phone : employeeInBase.Phone;
-            employeeInBase.CompanyId = ((employee.CompanyId != employeeInBase.CompanyId) && (employee.CompanyId != 0)) ? employee.CompanyId : employeeInBase.CompanyId;
+            //Проверка на обнуление какого либо поля (в запрос значение поля, которое необходимо обнулить, необходимо отправить -1)
+            if (employee.Name == "-1") employeeInBase.Name = null;
+            else if (employee.Name != employeeInBase.Name && employee.Name != null) employeeInBase.Name = employee.Name;
+            if (employee.Surname == "-1") employeeInBase.Surname = null;
+            else if (employee.Surname != employeeInBase.Surname && employee.Surname != null) employeeInBase.Surname = employee.Surname;
+            if (employee.Phone == "-1") employeeInBase.Phone = null;
+            else if (employee.Phone != employeeInBase.Phone && employee.Phone != null) employeeInBase.Phone = employee.Phone;
+            if (employee.CompanyId == -1) employeeInBase.CompanyId = 0; 
+            else if (employee.CompanyId != employeeInBase.CompanyId && employee.CompanyId != 0) employeeInBase.CompanyId = employee.CompanyId;
 
             try
             {
