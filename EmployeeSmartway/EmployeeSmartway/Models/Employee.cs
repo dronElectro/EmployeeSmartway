@@ -17,8 +17,8 @@ namespace EmployeeSmartway.Models
         public string Number { get; set; }
         public struct PassportEmp
         {
-            public string Type;
-            public string Number;
+            public string Type { get; set; }
+            public string Number { get; set; }
         }
 
         [NotMapped]
